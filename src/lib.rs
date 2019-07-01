@@ -4,10 +4,14 @@ use pest::Parser;
 use snafu::Snafu;
 
 pub fn enhance(input: &str) -> Result<String, Error> {
-    let mut parse_tree = RustDebug::parse(parser::Rule::source, input)
-        .map_err(|e| Error::ParseGrammar { description: format!("{}", e) })?;
-    let syntax_tree = ast::Source::from_pest(&mut parse_tree)
-        .map_err(|e| Error::AstGeneration { description: format!("{:?}", e) })?;
+    let mut parse_tree =
+        RustDebug::parse(parser::Rule::source, input).map_err(|e| Error::ParseGrammar {
+            description: format!("{}", e),
+        })?;
+    let syntax_tree =
+        ast::Source::from_pest(&mut parse_tree).map_err(|e| Error::AstGeneration {
+            description: format!("{:?}", e),
+        })?;
 
     Ok(syntax_tree.to_string())
 }

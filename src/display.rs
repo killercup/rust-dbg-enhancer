@@ -61,7 +61,10 @@ pub(crate) mod pad {
 
     impl<'a> PadAdapter<'a> {
         pub(crate) fn wrap<'b, 'c: 'a + 'b>(buf: &'c mut fmt::Formatter<'_>) -> Self {
-            PadAdapter { buf, on_newline: true }
+            PadAdapter {
+                buf,
+                on_newline: true,
+            }
         }
     }
 

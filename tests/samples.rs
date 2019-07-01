@@ -3,9 +3,15 @@ use rust_dbg_enhancer::enhance;
 
 #[test]
 fn pest_pairs() {
-    assert_debug_snapshot_matches!("struct", enhance(r#"Pair { rule: xkb_types_item }"#).unwrap());
+    assert_debug_snapshot_matches!(
+        "struct",
+        enhance(r#"Pair { rule: xkb_types_item }"#).unwrap()
+    );
 
-    assert_debug_snapshot_matches!("array", enhance(r#"[Pair { rule: xkb_types_item }]"#).unwrap());
+    assert_debug_snapshot_matches!(
+        "array",
+        enhance(r#"[Pair { rule: xkb_types_item }]"#).unwrap()
+    );
 
     assert_debug_snapshot_matches!(
         "full",
