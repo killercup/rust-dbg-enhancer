@@ -1,0 +1,16 @@
+source = { SOI ~ item ~ EOI }
+item = { array | structure | string | ident }
+    array = { "[" ~ (item ~ ","?)* ~ "]" }
+    structure = { ident ~ "{" ~ structure_field* ~ "}" }
+        structure_field = { ident ~ ":" ~ item ~ ","? }
+    string = _{ "\"" ~ string_content ~ "\"" }
+        string_content = @{ char* }
+        char = {
+            !("\"" | "\\") ~ ANY
+            | "\\" ~ ("\"" | "\\" | "/" | "|" | "b" | "f" | "n" | "r" | "t")
+            | "\\" ~ ("u" ~ ASCII_HEX_DIGIT{4})
+        }
+
+ident = @{ (ASCII_ALPHANUMERIC | "_" )+ }
+
+WHITESPACE = _{ " " | "\t" | NEWLINE }

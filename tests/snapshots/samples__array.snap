@@ -1,0 +1,7 @@
+---
+created: "2019-07-01T13:21:55.664333Z"
+creator: insta@0.8.1
+source: tests/samples.rs
+expression: "enhance(r#\"[Pair { rule: xkb_types_item }]\"#).unwrap()"
+---
+"[\n    Pair {\n        rule: xkb_types_item,\n    },\n]"
